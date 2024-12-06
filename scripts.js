@@ -29,7 +29,7 @@ addTextButton.addEventListener('click', () => {
     // Show text controls
     textControls.style.visibility = 'visible';
 
-    // Enable dragging
+    // Enable dragging for the newly added text
     makeTextDraggable(textDiv);
 });
 
@@ -56,6 +56,7 @@ function makeTextDraggable(textElement) {
             const textWidth = textElement.offsetWidth;
             const textHeight = textElement.offsetHeight;
 
+            // Ensure the text stays within the image bounds
             if (x >= imageRect.left && x + textWidth <= imageRect.right) {
                 textElement.style.left = `${x - imageRect.left}px`;
             }
@@ -71,6 +72,11 @@ function makeTextDraggable(textElement) {
         textElement.style.zIndex = ''; // Reset z-index after dragging
     });
 }
+
+// Make default text draggable within the image bounds
+document.querySelectorAll('.text').forEach((textElement) => {
+    makeTextDraggable(textElement);
+});
 
 // Text editing functionality
 const increaseFontSizeButton = document.getElementById('increaseFontSize');
