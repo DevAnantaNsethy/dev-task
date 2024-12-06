@@ -28,9 +28,51 @@ addTextButton.addEventListener('click', () => {
 
     // Show text controls
     textControls.style.visibility = 'visible';
+
+    // Enable dragging
+    makeTextDraggable(textDiv);
 });
 
-// Adjust font size, color, and family
+// Function to make text draggable within the image boundary
+function makeTextDraggable(textElement) {
+    let offsetX, offsetY;
+    let isDragging = false;
+
+    textElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - textElement.getBoundingClientRect().left;
+        offsetY = e.clientY - textElement.getBoundingClientRect().top;
+        textElement.style.position = 'absolute';
+        textElement.style.zIndex = '100'; // Bring to front while dragging
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+
+            // Keep the text within the image boundary
+            const imageRect = textElement.closest('.swiper-slide').getBoundingClientRect();
+            const textWidth = textElement.offsetWidth;
+            const textHeight = textElement.offsetHeight;
+
+            if (x >= imageRect.left && x + textWidth <= imageRect.right) {
+                textElement.style.left = `${x - imageRect.left}px`;
+            }
+
+            if (y >= imageRect.top && y + textHeight <= imageRect.bottom) {
+                textElement.style.top = `${y - imageRect.top}px`;
+            }
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        textElement.style.zIndex = ''; // Reset z-index after dragging
+    });
+}
+
+// Text editing functionality
 const increaseFontSizeButton = document.getElementById('increaseFontSize');
 const decreaseFontSizeButton = document.getElementById('decreaseFontSize');
 const fontColorInput = document.getElementById('fontColor');
