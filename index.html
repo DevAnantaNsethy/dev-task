@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider with Add Text Feature</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <img src="/images/1.jpeg" alt="Image 1">
+                    <div class="text">Welcome to the image slider!</div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <img src="/images/2.jpeg" alt="Image 2">
+                    <div class="text">Welcome to the image slider!</div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <img src="/images/1.jpeg" alt="Image 3">
+                    <div class="text">Welcome to the image slider!</div>
+                </div>
+            </div>
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        
+        <!-- Add Text Button -->
+        <button id="addTextBtn">Add Text</button>
+        
+        <!-- Text Controls -->
+        <div class="text-controls">
+            <button id="increaseFontSize">Increase Font Size</button>
+            <button id="decreaseFontSize">Decrease Font Size</button>
+            <input type="color" id="fontColor" />
+            <select id="fontFamily">
+                <option value="Arial">Arial</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
